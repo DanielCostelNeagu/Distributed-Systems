@@ -1,0 +1,20 @@
+syntax ="proto3";
+option java_multiple_files = true;
+option java_package = "databaseService";
+option java_outer_classname = "DataBaseServiceImpl";
+package dataBaseService;
+
+// Interface exported by the server.
+service DataBaseService {
+  
+  rpc dataBase_do(RequestMessage) returns (ResponseMessage) {}
+    
+}
+
+message RequestMessage {
+  string text = 1;  
+}
+
+message ResponseMessage {
+  int32 length = 1;
+}

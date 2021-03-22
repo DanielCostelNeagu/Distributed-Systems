@@ -1,4 +1,4 @@
-package com.smartenv.grpc;
+package userService;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
@@ -19,39 +19,39 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.15.0)",
-    comments = "Source: user.proto")
-public final class userGrpc {
+    comments = "Source: userService.proto")
+public final class UserServiceGrpc {
 
-  private userGrpc() {}
+  private UserServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "user";
+  public static final String SERVICE_NAME = "userService.UserService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<com.smartenv.grpc.User.LoginRequest,
-      com.smartenv.grpc.User.APIResponse> getLoginMethod;
+  private static volatile io.grpc.MethodDescriptor<userService.LoginRequest,
+      userService.LoginResponse> getLoginMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "login",
-      requestType = com.smartenv.grpc.User.LoginRequest.class,
-      responseType = com.smartenv.grpc.User.APIResponse.class,
+      requestType = userService.LoginRequest.class,
+      responseType = userService.LoginResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.smartenv.grpc.User.LoginRequest,
-      com.smartenv.grpc.User.APIResponse> getLoginMethod() {
-    io.grpc.MethodDescriptor<com.smartenv.grpc.User.LoginRequest, com.smartenv.grpc.User.APIResponse> getLoginMethod;
-    if ((getLoginMethod = userGrpc.getLoginMethod) == null) {
-      synchronized (userGrpc.class) {
-        if ((getLoginMethod = userGrpc.getLoginMethod) == null) {
-          userGrpc.getLoginMethod = getLoginMethod = 
-              io.grpc.MethodDescriptor.<com.smartenv.grpc.User.LoginRequest, com.smartenv.grpc.User.APIResponse>newBuilder()
+  public static io.grpc.MethodDescriptor<userService.LoginRequest,
+      userService.LoginResponse> getLoginMethod() {
+    io.grpc.MethodDescriptor<userService.LoginRequest, userService.LoginResponse> getLoginMethod;
+    if ((getLoginMethod = UserServiceGrpc.getLoginMethod) == null) {
+      synchronized (UserServiceGrpc.class) {
+        if ((getLoginMethod = UserServiceGrpc.getLoginMethod) == null) {
+          UserServiceGrpc.getLoginMethod = getLoginMethod = 
+              io.grpc.MethodDescriptor.<userService.LoginRequest, userService.LoginResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "user", "login"))
+                  "userService.UserService", "login"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.smartenv.grpc.User.LoginRequest.getDefaultInstance()))
+                  userService.LoginRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.smartenv.grpc.User.APIResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new userMethodDescriptorSupplier("login"))
+                  userService.LoginResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new UserServiceMethodDescriptorSupplier("login"))
                   .build();
           }
         }
@@ -59,31 +59,31 @@ public final class userGrpc {
      return getLoginMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.smartenv.grpc.User.LogoutRequest,
-      com.smartenv.grpc.User.APIResponse> getLogoutMethod;
+  private static volatile io.grpc.MethodDescriptor<userService.LogoutRequest,
+      userService.LogoutResponse> getLogoutMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "logout",
-      requestType = com.smartenv.grpc.User.LogoutRequest.class,
-      responseType = com.smartenv.grpc.User.APIResponse.class,
+      requestType = userService.LogoutRequest.class,
+      responseType = userService.LogoutResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.smartenv.grpc.User.LogoutRequest,
-      com.smartenv.grpc.User.APIResponse> getLogoutMethod() {
-    io.grpc.MethodDescriptor<com.smartenv.grpc.User.LogoutRequest, com.smartenv.grpc.User.APIResponse> getLogoutMethod;
-    if ((getLogoutMethod = userGrpc.getLogoutMethod) == null) {
-      synchronized (userGrpc.class) {
-        if ((getLogoutMethod = userGrpc.getLogoutMethod) == null) {
-          userGrpc.getLogoutMethod = getLogoutMethod = 
-              io.grpc.MethodDescriptor.<com.smartenv.grpc.User.LogoutRequest, com.smartenv.grpc.User.APIResponse>newBuilder()
+  public static io.grpc.MethodDescriptor<userService.LogoutRequest,
+      userService.LogoutResponse> getLogoutMethod() {
+    io.grpc.MethodDescriptor<userService.LogoutRequest, userService.LogoutResponse> getLogoutMethod;
+    if ((getLogoutMethod = UserServiceGrpc.getLogoutMethod) == null) {
+      synchronized (UserServiceGrpc.class) {
+        if ((getLogoutMethod = UserServiceGrpc.getLogoutMethod) == null) {
+          UserServiceGrpc.getLogoutMethod = getLogoutMethod = 
+              io.grpc.MethodDescriptor.<userService.LogoutRequest, userService.LogoutResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "user", "logout"))
+                  "userService.UserService", "logout"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.smartenv.grpc.User.LogoutRequest.getDefaultInstance()))
+                  userService.LogoutRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.smartenv.grpc.User.APIResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new userMethodDescriptorSupplier("logout"))
+                  userService.LogoutResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new UserServiceMethodDescriptorSupplier("logout"))
                   .build();
           }
         }
@@ -94,41 +94,41 @@ public final class userGrpc {
   /**
    * Creates a new async stub that supports all call types for the service
    */
-  public static userStub newStub(io.grpc.Channel channel) {
-    return new userStub(channel);
+  public static UserServiceStub newStub(io.grpc.Channel channel) {
+    return new UserServiceStub(channel);
   }
 
   /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
-  public static userBlockingStub newBlockingStub(
+  public static UserServiceBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    return new userBlockingStub(channel);
+    return new UserServiceBlockingStub(channel);
   }
 
   /**
    * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
-  public static userFutureStub newFutureStub(
+  public static UserServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    return new userFutureStub(channel);
+    return new UserServiceFutureStub(channel);
   }
 
   /**
    */
-  public static abstract class userImplBase implements io.grpc.BindableService {
+  public static abstract class UserServiceImplBase implements io.grpc.BindableService {
 
     /**
      */
-    public void login(com.smartenv.grpc.User.LoginRequest request,
-        io.grpc.stub.StreamObserver<com.smartenv.grpc.User.APIResponse> responseObserver) {
+    public void login(userService.LoginRequest request,
+        io.grpc.stub.StreamObserver<userService.LoginResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getLoginMethod(), responseObserver);
     }
 
     /**
      */
-    public void logout(com.smartenv.grpc.User.LogoutRequest request,
-        io.grpc.stub.StreamObserver<com.smartenv.grpc.User.APIResponse> responseObserver) {
+    public void logout(userService.LogoutRequest request,
+        io.grpc.stub.StreamObserver<userService.LogoutResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getLogoutMethod(), responseObserver);
     }
 
@@ -138,15 +138,15 @@ public final class userGrpc {
             getLoginMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                com.smartenv.grpc.User.LoginRequest,
-                com.smartenv.grpc.User.APIResponse>(
+                userService.LoginRequest,
+                userService.LoginResponse>(
                   this, METHODID_LOGIN)))
           .addMethod(
             getLogoutMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                com.smartenv.grpc.User.LogoutRequest,
-                com.smartenv.grpc.User.APIResponse>(
+                userService.LogoutRequest,
+                userService.LogoutResponse>(
                   this, METHODID_LOGOUT)))
           .build();
     }
@@ -154,34 +154,34 @@ public final class userGrpc {
 
   /**
    */
-  public static final class userStub extends io.grpc.stub.AbstractStub<userStub> {
-    private userStub(io.grpc.Channel channel) {
+  public static final class UserServiceStub extends io.grpc.stub.AbstractStub<UserServiceStub> {
+    private UserServiceStub(io.grpc.Channel channel) {
       super(channel);
     }
 
-    private userStub(io.grpc.Channel channel,
+    private UserServiceStub(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected userStub build(io.grpc.Channel channel,
+    protected UserServiceStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
-      return new userStub(channel, callOptions);
+      return new UserServiceStub(channel, callOptions);
     }
 
     /**
      */
-    public void login(com.smartenv.grpc.User.LoginRequest request,
-        io.grpc.stub.StreamObserver<com.smartenv.grpc.User.APIResponse> responseObserver) {
+    public void login(userService.LoginRequest request,
+        io.grpc.stub.StreamObserver<userService.LoginResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getLoginMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void logout(com.smartenv.grpc.User.LogoutRequest request,
-        io.grpc.stub.StreamObserver<com.smartenv.grpc.User.APIResponse> responseObserver) {
+    public void logout(userService.LogoutRequest request,
+        io.grpc.stub.StreamObserver<userService.LogoutResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getLogoutMethod(), getCallOptions()), request, responseObserver);
     }
@@ -189,32 +189,32 @@ public final class userGrpc {
 
   /**
    */
-  public static final class userBlockingStub extends io.grpc.stub.AbstractStub<userBlockingStub> {
-    private userBlockingStub(io.grpc.Channel channel) {
+  public static final class UserServiceBlockingStub extends io.grpc.stub.AbstractStub<UserServiceBlockingStub> {
+    private UserServiceBlockingStub(io.grpc.Channel channel) {
       super(channel);
     }
 
-    private userBlockingStub(io.grpc.Channel channel,
+    private UserServiceBlockingStub(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected userBlockingStub build(io.grpc.Channel channel,
+    protected UserServiceBlockingStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
-      return new userBlockingStub(channel, callOptions);
+      return new UserServiceBlockingStub(channel, callOptions);
     }
 
     /**
      */
-    public com.smartenv.grpc.User.APIResponse login(com.smartenv.grpc.User.LoginRequest request) {
+    public userService.LoginResponse login(userService.LoginRequest request) {
       return blockingUnaryCall(
           getChannel(), getLoginMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.smartenv.grpc.User.APIResponse logout(com.smartenv.grpc.User.LogoutRequest request) {
+    public userService.LogoutResponse logout(userService.LogoutRequest request) {
       return blockingUnaryCall(
           getChannel(), getLogoutMethod(), getCallOptions(), request);
     }
@@ -222,34 +222,34 @@ public final class userGrpc {
 
   /**
    */
-  public static final class userFutureStub extends io.grpc.stub.AbstractStub<userFutureStub> {
-    private userFutureStub(io.grpc.Channel channel) {
+  public static final class UserServiceFutureStub extends io.grpc.stub.AbstractStub<UserServiceFutureStub> {
+    private UserServiceFutureStub(io.grpc.Channel channel) {
       super(channel);
     }
 
-    private userFutureStub(io.grpc.Channel channel,
+    private UserServiceFutureStub(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected userFutureStub build(io.grpc.Channel channel,
+    protected UserServiceFutureStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
-      return new userFutureStub(channel, callOptions);
+      return new UserServiceFutureStub(channel, callOptions);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.smartenv.grpc.User.APIResponse> login(
-        com.smartenv.grpc.User.LoginRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<userService.LoginResponse> login(
+        userService.LoginRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getLoginMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.smartenv.grpc.User.APIResponse> logout(
-        com.smartenv.grpc.User.LogoutRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<userService.LogoutResponse> logout(
+        userService.LogoutRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getLogoutMethod(), getCallOptions()), request);
     }
@@ -263,10 +263,10 @@ public final class userGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final userImplBase serviceImpl;
+    private final UserServiceImplBase serviceImpl;
     private final int methodId;
 
-    MethodHandlers(userImplBase serviceImpl, int methodId) {
+    MethodHandlers(UserServiceImplBase serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -276,12 +276,12 @@ public final class userGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_LOGIN:
-          serviceImpl.login((com.smartenv.grpc.User.LoginRequest) request,
-              (io.grpc.stub.StreamObserver<com.smartenv.grpc.User.APIResponse>) responseObserver);
+          serviceImpl.login((userService.LoginRequest) request,
+              (io.grpc.stub.StreamObserver<userService.LoginResponse>) responseObserver);
           break;
         case METHODID_LOGOUT:
-          serviceImpl.logout((com.smartenv.grpc.User.LogoutRequest) request,
-              (io.grpc.stub.StreamObserver<com.smartenv.grpc.User.APIResponse>) responseObserver);
+          serviceImpl.logout((userService.LogoutRequest) request,
+              (io.grpc.stub.StreamObserver<userService.LogoutResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -299,32 +299,32 @@ public final class userGrpc {
     }
   }
 
-  private static abstract class userBaseDescriptorSupplier
+  private static abstract class UserServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-    userBaseDescriptorSupplier() {}
+    UserServiceBaseDescriptorSupplier() {}
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return com.smartenv.grpc.User.getDescriptor();
+      return userService.UserServiceImpl.getDescriptor();
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
-      return getFileDescriptor().findServiceByName("user");
+      return getFileDescriptor().findServiceByName("UserService");
     }
   }
 
-  private static final class userFileDescriptorSupplier
-      extends userBaseDescriptorSupplier {
-    userFileDescriptorSupplier() {}
+  private static final class UserServiceFileDescriptorSupplier
+      extends UserServiceBaseDescriptorSupplier {
+    UserServiceFileDescriptorSupplier() {}
   }
 
-  private static final class userMethodDescriptorSupplier
-      extends userBaseDescriptorSupplier
+  private static final class UserServiceMethodDescriptorSupplier
+      extends UserServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
     private final String methodName;
 
-    userMethodDescriptorSupplier(String methodName) {
+    UserServiceMethodDescriptorSupplier(String methodName) {
       this.methodName = methodName;
     }
 
@@ -339,11 +339,11 @@ public final class userGrpc {
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     io.grpc.ServiceDescriptor result = serviceDescriptor;
     if (result == null) {
-      synchronized (userGrpc.class) {
+      synchronized (UserServiceGrpc.class) {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new userFileDescriptorSupplier())
+              .setSchemaDescriptor(new UserServiceFileDescriptorSupplier())
               .addMethod(getLoginMethod())
               .addMethod(getLogoutMethod())
               .build();
