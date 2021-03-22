@@ -59,28 +59,28 @@ public final class userGrpc {
      return getLoginMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.smartenv.grpc.User.Empty,
+  private static volatile io.grpc.MethodDescriptor<com.smartenv.grpc.User.LogoutRequest,
       com.smartenv.grpc.User.APIResponse> getLogoutMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "logout",
-      requestType = com.smartenv.grpc.User.Empty.class,
+      requestType = com.smartenv.grpc.User.LogoutRequest.class,
       responseType = com.smartenv.grpc.User.APIResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.smartenv.grpc.User.Empty,
+  public static io.grpc.MethodDescriptor<com.smartenv.grpc.User.LogoutRequest,
       com.smartenv.grpc.User.APIResponse> getLogoutMethod() {
-    io.grpc.MethodDescriptor<com.smartenv.grpc.User.Empty, com.smartenv.grpc.User.APIResponse> getLogoutMethod;
+    io.grpc.MethodDescriptor<com.smartenv.grpc.User.LogoutRequest, com.smartenv.grpc.User.APIResponse> getLogoutMethod;
     if ((getLogoutMethod = userGrpc.getLogoutMethod) == null) {
       synchronized (userGrpc.class) {
         if ((getLogoutMethod = userGrpc.getLogoutMethod) == null) {
           userGrpc.getLogoutMethod = getLogoutMethod = 
-              io.grpc.MethodDescriptor.<com.smartenv.grpc.User.Empty, com.smartenv.grpc.User.APIResponse>newBuilder()
+              io.grpc.MethodDescriptor.<com.smartenv.grpc.User.LogoutRequest, com.smartenv.grpc.User.APIResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "user", "logout"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.smartenv.grpc.User.Empty.getDefaultInstance()))
+                  com.smartenv.grpc.User.LogoutRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.smartenv.grpc.User.APIResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new userMethodDescriptorSupplier("logout"))
@@ -127,7 +127,7 @@ public final class userGrpc {
 
     /**
      */
-    public void logout(com.smartenv.grpc.User.Empty request,
+    public void logout(com.smartenv.grpc.User.LogoutRequest request,
         io.grpc.stub.StreamObserver<com.smartenv.grpc.User.APIResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getLogoutMethod(), responseObserver);
     }
@@ -145,7 +145,7 @@ public final class userGrpc {
             getLogoutMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                com.smartenv.grpc.User.Empty,
+                com.smartenv.grpc.User.LogoutRequest,
                 com.smartenv.grpc.User.APIResponse>(
                   this, METHODID_LOGOUT)))
           .build();
@@ -180,7 +180,7 @@ public final class userGrpc {
 
     /**
      */
-    public void logout(com.smartenv.grpc.User.Empty request,
+    public void logout(com.smartenv.grpc.User.LogoutRequest request,
         io.grpc.stub.StreamObserver<com.smartenv.grpc.User.APIResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getLogoutMethod(), getCallOptions()), request, responseObserver);
@@ -214,7 +214,7 @@ public final class userGrpc {
 
     /**
      */
-    public com.smartenv.grpc.User.APIResponse logout(com.smartenv.grpc.User.Empty request) {
+    public com.smartenv.grpc.User.APIResponse logout(com.smartenv.grpc.User.LogoutRequest request) {
       return blockingUnaryCall(
           getChannel(), getLogoutMethod(), getCallOptions(), request);
     }
@@ -249,7 +249,7 @@ public final class userGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<com.smartenv.grpc.User.APIResponse> logout(
-        com.smartenv.grpc.User.Empty request) {
+        com.smartenv.grpc.User.LogoutRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getLogoutMethod(), getCallOptions()), request);
     }
@@ -280,7 +280,7 @@ public final class userGrpc {
               (io.grpc.stub.StreamObserver<com.smartenv.grpc.User.APIResponse>) responseObserver);
           break;
         case METHODID_LOGOUT:
-          serviceImpl.logout((com.smartenv.grpc.User.Empty) request,
+          serviceImpl.logout((com.smartenv.grpc.User.LogoutRequest) request,
               (io.grpc.stub.StreamObserver<com.smartenv.grpc.User.APIResponse>) responseObserver);
           break;
         default:
