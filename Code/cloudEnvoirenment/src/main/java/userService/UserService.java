@@ -7,6 +7,11 @@ import io.grpc.ServerServiceDefinition;
 import io.grpc.stub.StreamObserver;
 import userService.UserServiceGrpc.UserServiceImplBase;
 
+/**
+ * @author Daniel x17128463
+ *
+ */
+
 public class UserService extends UserServiceImplBase {
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
