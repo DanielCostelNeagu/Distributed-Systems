@@ -14,6 +14,9 @@ import java.net.Socket;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 
+//import org.junit.Before;
+//import org.junit.Test;
+
 /**
  * @author Daniel x17128463
  *
@@ -66,6 +69,51 @@ public class DataBaseService extends DataBaseServiceImplBase {
 	      
 		
 	}//main
+	
+	/*public static class File {
+
+        public int getFile(final File file) throws FileNotFoundException {
+            return getFile(new BufferedReader(new FileReader(file)));
+        }
+
+        public int getFile(final BufferedReader reader) {
+            int file = 0;
+            try {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    file += line.trim().split(" ").length;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return file;
+        }
+    }
+	 private static String TEST_CONTENT = "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,\n"
+             +" there live the blind texts. Separated they live in Bookmarksgrove right at the coast of\n"
+				+"the Semantics, a large language ocean.";
+
+	private FileCounter fileCounter;
+	
+	@Before
+	public void setUp() {
+	fileCounter = new FileCounter();
+	}
+	
+	@Test
+	public void ensureExpectedFileIsReturned() {
+	assertEquals(14, fileCounter.getFile(new BufferedReader(new StringReader(TEST_CONTENT))));
+	}
+	*/
+
 
 
 	@Override

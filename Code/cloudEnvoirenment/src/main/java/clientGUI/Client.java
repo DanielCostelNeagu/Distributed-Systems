@@ -114,11 +114,13 @@ public class Client /* implements ActionListener */{
 			      String password = passwordField_1.getText();
 			      
 			      //local test
-			      if (userName.trim().equals("Dan") && password.trim().equals("Dan")) {
-			    	  JOptionPane.showMessageDialog(null," Hello " + userName + "");
+			      if (userName.trim().equals("Daniel") && password.trim().equals("Dublin")) {
+			    	  JOptionPane.showMessageDialog(null," Hello " + userName );
 			      } else {
 			    	  JOptionPane.showMessageDialog(null," Invalid user.. ");
 			      }
+			      
+			      
 			}
 		});
 				
