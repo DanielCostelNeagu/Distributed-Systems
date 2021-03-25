@@ -7,6 +7,10 @@ import io.grpc.ServerServiceDefinition;
 import io.grpc.stub.StreamObserver;
 import userService.UserServiceGrpc.UserServiceImplBase;
 
+import java.net.InetAddress;
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceInfo;
+
 /**
  * @author Daniel x17128463
  *
@@ -15,7 +19,7 @@ import userService.UserServiceGrpc.UserServiceImplBase;
 public class UserService extends UserServiceImplBase {
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
-		// TODO Auto-generated method stub
+	/*	// TODO Auto-generated method stub
 		System.out.println("Starting gRPC Server");
 		UserService userserver = new UserService();
 
@@ -36,7 +40,27 @@ public class UserService extends UserServiceImplBase {
 		}
 		catch(InterruptedException e) {
 			e.printStackTrace();
-		}
+		}	*/
+		
+		int port = 9090;
+		 try {
+	        JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+
+	        // Register a service
+	        ServiceInfo serviceInfo = ServiceInfo.create("_http._tcp.local.", "userServer", port, "UserService Server will sign you in");
+	        jmdns.registerService(serviceInfo);
+	        System.out.println("Starting the UserService Server ");
+
+	        // Wait a bit
+           Thread.sleep(25000);
+
+           // Unregister all services
+           jmdns.unregisterAllServices();
+
+	        } 
+		 	catch (IOException e) {
+	            System.out.println(e.getMessage());
+	        }
 
 	}//main
 

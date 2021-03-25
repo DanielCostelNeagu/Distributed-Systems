@@ -16,16 +16,68 @@ import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 
-public class Client  {
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceEvent;
+import javax.jmdns.ServiceListener;
+
+import userService.UserServiceGrpc;
+import databaseService.DataBaseServiceGrpc;
+import vmService.VMServicesGrpc;
+
+public class Client /* implements ActionListener */{
 
 	private JFrame frame;
 	private JTextField userNameField;
 	private JPasswordField passwordField_1;
+	
+	/**
+	 * jmDNSListener.
+	 */
+	private static class DNSListener implements ServiceListener {
+        @Override
+        public void serviceAdded(ServiceEvent event) {
+            System.out.println("Service added: " + event.getInfo());
+        }
+
+        @Override
+        public void serviceRemoved(ServiceEvent event) {
+            System.out.println("Service removed: " + event.getInfo());
+        }
+
+        @Override
+        public void serviceResolved(ServiceEvent event) {
+            System.out.println("Service resolved: " + event.getInfo());
+        }
+    }
+	
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
+		
+		try {
+            // Create a JmDNS instance
+            JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+
+            // Add a service listener
+            jmdns.addServiceListener("_http._tcp.local.", new DNSListener());
+
+            // Wait a bit
+            Thread.sleep(30000);
+        } 
+		catch (UnknownHostException e) {
+            System.out.println(e.getMessage());
+        } 
+		catch (IOException e) {
+            System.out.println(e.getMessage());
+        }	
+		
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -57,8 +109,16 @@ public class Client  {
 		JButton loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Hello");
-				
+				//JOptionPane.showMessageDialog(null, " LOGIN TEST");
+				String userName = userNameField.getText();
+			      String password = passwordField_1.getText();
+			      
+			      //local test
+			      if (userName.trim().equals("Dan") && password.trim().equals("Dan")) {
+			    	  JOptionPane.showMessageDialog(null," Hello " + userName + "");
+			      } else {
+			    	  JOptionPane.showMessageDialog(null," Invalid user.. ");
+			      }
 			}
 		});
 				
@@ -79,15 +139,25 @@ public class Client  {
 		frame.getContentPane().add(lblNewLabel_4);
 		
 		userNameField = new JTextField();
+		userNameField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		userNameField.setBounds(110, 95, 86, 20);
 		frame.getContentPane().add(userNameField);
 		userNameField.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Password:");
-		lblNewLabel_5.setBounds(40, 133, 60, 14);
+		lblNewLabel_5.setBounds(40, 133, 72, 14);
 		frame.getContentPane().add(lblNewLabel_5);
 		
 		passwordField_1 = new JPasswordField();
+		passwordField_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		passwordField_1.setBounds(110, 130, 86, 20);
 		frame.getContentPane().add(passwordField_1);
 		
@@ -101,14 +171,27 @@ public class Client  {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JRadioButton file1RadioButton = new JRadioButton("Select File 1");
+		file1RadioButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		file1RadioButton.setBounds(40, 198, 109, 23);
 		frame.getContentPane().add(file1RadioButton);
 		
 		JRadioButton file2RadioButton = new JRadioButton("Select File 2");
+		file2RadioButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		file2RadioButton.setBounds(40, 224, 109, 23);
 		frame.getContentPane().add(file2RadioButton);
 		
 		JRadioButton file3RadioButton = new JRadioButton("Select File3");
+		file3RadioButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		file3RadioButton.setBounds(40, 250, 109, 23);
 		frame.getContentPane().add(file3RadioButton);
 		
@@ -120,15 +203,27 @@ public class Client  {
 		
 		
 		JCheckBox computeCheckBox = new JCheckBox("Compute");
+		computeCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		computeCheckBox.setBounds(40, 327, 97, 23);
 		frame.getContentPane().add(computeCheckBox);
 		
 		JCheckBox storageCheckBox = new JCheckBox("Storage");
+		storageCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		storageCheckBox.setBounds(40, 353, 97, 23);
 		frame.getContentPane().add(storageCheckBox);
 		
 		JCheckBox generalCheckBox = new JCheckBox("General Purpose");
-		generalCheckBox.setBounds(40, 379, 97, 23);
+		generalCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		generalCheckBox.setBounds(40, 379, 128, 23);
 		frame.getContentPane().add(generalCheckBox);
 		
 		JButton vmButton = new JButton("View VM");
