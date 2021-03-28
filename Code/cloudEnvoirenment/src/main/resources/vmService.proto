@@ -1,14 +1,22 @@
 syntax ="proto3";
 option java_multiple_files = true;
-option java_package = "vmService";
+option java_package = "vmService.generated";
 option java_outer_classname = "VMServicesImpl";
 package vmServices;
 
 // Interface exported by the server.
 service VMServices {
-  
   rpc vmServices_do(RequestMessage) returns (ResponseMessage) {}
-    
+  rpc vmServices_broadcast_status(RequestStatus) returns (stream ResponseStatus) {}
+  rpc vmServices_deploy_code(stream RequestDeployCode) returns (stream ResponseDeployCode) {}
+  rpc vmServices_deploy_database(stream RequestDeployDatabase) returns (ResponseDeployDatabase) {}
+
+}
+
+message Status {
+  int32 healthy = 1;
+  bool onOrOff = 2;
+  bool internetConnection = 3;
 }
 
 message RequestMessage {
@@ -17,4 +25,27 @@ message RequestMessage {
 
 message ResponseMessage {
   int32 length = 1;
+}
+
+
+message RequestStatus {}
+
+message ResponseStatus {
+  Status result = 1;
+}
+
+message RequestDeployCode {
+  string code_text = 1;
+}
+
+message ResponseDeployCode {
+  int32 deploymentPercentage = 1;
+}
+
+message RequestDeployDatabase {
+  string database_tables = 1;
+}
+
+message ResponseDeployDatabase {
+  string result = 1;
 }

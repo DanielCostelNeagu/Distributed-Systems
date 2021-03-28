@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JPasswordField;
-import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 
 import java.io.IOException;
@@ -22,10 +21,6 @@ import java.net.UnknownHostException;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceEvent;
 import javax.jmdns.ServiceListener;
-
-import userService.UserServiceGrpc;
-import databaseService.DataBaseServiceGrpc;
-import vmService.VMServicesGrpc;
 
 public class Client /* implements ActionListener */{
 

@@ -1,18 +1,25 @@
 package databaseService;
 
 import java.io.IOException;
+
+import databaseService.generated.DataBaseServiceGrpc;
+import databaseService.generated.RequestMessage;
+import databaseService.generated.ResponseMessage;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import io.grpc.ServerServiceDefinition;
 import io.grpc.stub.StreamObserver;
-import databaseService.DataBaseServiceGrpc.DataBaseServiceImplBase;
+import userService.UserService;
+import vmService.generated.ResponseStatus;
+import vmService.generated.Status;
 
-import java.io.PrintWriter;
 import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceEvent;
 import javax.jmdns.ServiceInfo;
+import javax.jmdns.ServiceListener;
 
 //import org.junit.Before;
 //import org.junit.Test;
@@ -22,55 +29,101 @@ import javax.jmdns.ServiceInfo;
  *
  */
 
-public class DataBaseService extends DataBaseServiceImplBase {
+public class DataBaseService extends DataBaseServiceGrpc.DataBaseServiceImplBase implements ServiceListener {
 
-	public static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
-	/*	DataBaseService dbServer = new DataBaseService();
+    HashMap<String, String> tables = new HashMap<>();
 
-		int port = 50052;
+    @Override
+    public void serviceAdded(ServiceEvent serviceEvent) {
+        System.out.println("Service added: " + serviceEvent.getInfo());
+    }
 
-		try {
-			Server server = ServerBuilder.forPort(port)
-					.addService(dbServer)
-					.build()
-					.start();
+    @Override
+    public void serviceRemoved(ServiceEvent serviceEvent) {
+        System.out.println("Service removed: " + serviceEvent.getInfo());
+    }
 
-			System.out.println("Database Server started on Port:" + server.getPort());
-		    server.awaitTermination();
+    @Override
+    public void serviceResolved(ServiceEvent serviceEvent) {
+        System.out.println("Service resolved: " + serviceEvent.getInfo());
+    }
 
-		}//try
-		catch(IOException e){
-			e.printStackTrace();
-		}
-		catch(InterruptedException e) {
-			e.printStackTrace();
-		}	*/
-		
-		 int port = 9091;
-		 try {
-	        JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 
-	        // Register a service
-	        ServiceInfo serviceInfo = ServiceInfo.create("_http._tcp.local.", "database", port, "DataBaseService Server will give you the file");
-	        jmdns.registerService(serviceInfo);
-	        System.out.println("Starting the Database Server ");
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
 
-	        // Wait a bit
-            Thread.sleep(25000);
+        int port = 9093;
+        try {
 
-            // Unregister all services
-            jmdns.unregisterAllServices();
 
-	        } 
-		 	catch (IOException e) {
-	            System.out.println(e.getMessage());
-	        }
-	      
-		
-	}//main
-	
-	/*public static class File {
+            JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+
+            // Register a service
+            ServiceInfo serviceInfo = ServiceInfo.create("_http._tcp.local.", "database", port, "DataBaseService Server will give you the file");
+            jmdns.registerService(serviceInfo);
+
+            Server server = ServerBuilder.forPort(port)
+                    .addService(new DataBaseService())
+                    .build()
+                    .start();
+
+            jmdns.addServiceListener("_http._tcp.local.", new DataBaseService());
+
+            System.out.println("Starting the Database Server with Port:" + server.getPort());
+            server.awaitTermination();
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void dataBaseDo(
+            RequestMessage request,
+            StreamObserver<ResponseMessage> responseObserver) {
+
+
+        tables.put("Customers", "Profile");
+        tables.put("Virtual Machines", "Name");
+        tables.put("Business Unit", "Accountancy");
+
+
+		System.out.println("Inside DBService: Adding new columns and rows");
+
+
+		//prepare the value to be set back
+		String newColumn= request.getColumn();
+		String newRow= request.getRow();
+
+
+        tables.put(newColumn, newRow);
+
+
+        Iterator iterator = tables.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry me2 = (Map.Entry) iterator.next();
+
+            responseObserver.onNext(
+                    ResponseMessage.newBuilder()
+                            .setColumn("Key: "+me2.getKey())
+                            .setRow("Value: " + me2.getValue())
+                            .build()
+            );
+
+
+            System.out.println("Key: "+me2.getKey() + " & Value: " + me2.getValue());
+        }
+
+		responseObserver.onCompleted();
+    }
+
+
+
+
+
+    /*public static class File {
 
         public int getFile(final File file) throws FileNotFoundException {
             return getFile(new BufferedReader(new FileReader(file)));
@@ -102,12 +155,12 @@ public class DataBaseService extends DataBaseServiceImplBase {
 				+"the Semantics, a large language ocean.";
 
 	private FileCounter fileCounter;
-	
+
 	@Before
 	public void setUp() {
 	fileCounter = new FileCounter();
 	}
-	
+
 	@Test
 	public void ensureExpectedFileIsReturned() {
 	assertEquals(14, fileCounter.getFile(new BufferedReader(new StringReader(TEST_CONTENT))));
@@ -115,19 +168,19 @@ public class DataBaseService extends DataBaseServiceImplBase {
 	*/
 
 
-
-	@Override
-	public void dataBaseDo(RequestMessage request, StreamObserver<ResponseMessage> responseObserver) {
-		System.out.println("Inside DBService:");
-		//prepare the value to be set back
-		int length = request.getText().length();
-		
-		//preparing the response message
-		ResponseMessage reply = ResponseMessage.newBuilder().setLength(length).build(); 
-
-		responseObserver.onNext( reply ); 
-
-		responseObserver.onCompleted();
-	}
+//
+//	@Override
+//	public void dataBaseDo(RequestMessage request, StreamObserver<ResponseMessage> responseObserver) {
+//		System.out.println("Inside DBService:");
+//		//prepare the value to be set back
+//		int length = request.getText().length();
+//
+//		//preparing the response message
+//		ResponseMessage reply = ResponseMessage.newBuilder().setLength(length).build();
+//
+//		responseObserver.onNext( reply );
+//
+//		responseObserver.onCompleted();
+//	}
 
 }//class

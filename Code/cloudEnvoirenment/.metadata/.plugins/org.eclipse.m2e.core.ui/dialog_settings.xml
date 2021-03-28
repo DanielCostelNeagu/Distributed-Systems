@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
-			<item value="C:\Users\Daniel\Documents\Year4\SemesterTwo\Distributed Systems\Project\Code\cloudEnvoirenment"/>
+			<item value="C:\Users\Daniel\Documents\Year4\SemesterTwo\Distributed Systems\Distributed-Systems\Distributed-Systems\Code\cloudEnvoirenment"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
